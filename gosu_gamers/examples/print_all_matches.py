@@ -1,11 +1,16 @@
+"""
+Prints live, upcoming and recent matches of a specified game
+"""
+import sys
+
 from gosu_gamers.gg_match import MatchScraper
 
 __author__ = 'Bernard @ Bernardas.Alisauskas@gmail.com'
 
 
-def example_all_matches():
+def example_all_matches(game):
     """Example that outputs all of the matches from dota2 page"""
-    ggms = MatchScraper(game='dota2')
+    ggms = MatchScraper(game)
     ggms.find_live_matches()
     ggms.find_upcoming_matches()
     ggms.find_recent_matches()
@@ -23,4 +28,7 @@ def example_all_matches():
     print(''.center(79, '='))
 
 if __name__ == '__main__':
-    example_all_matches()
+    if len(sys.argv) > 1:
+        example_all_matches(sys.argv[1])
+    else:
+        print("Usage: python print_all_matches.py [dota2|lol|hearthstone]")
