@@ -90,7 +90,7 @@ class MatchScraper:
 
 
 class Match:
-    """Match class """
+    """Match class for storig match data"""
     def __init__(self, team1, team1_score, team1_bet, team2, team2_score, team2_bet, live_in, tournament, has_vods):
         self.team1 = self.fix_team_name(team1)
         self.team1_bet = team1_bet
