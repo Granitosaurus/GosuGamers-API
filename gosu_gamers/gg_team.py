@@ -44,7 +44,6 @@ class TeamScraper:
                     print('failed to get rank:', rank)
 
 
-
 if __name__ == '__main__':
     rc = TeamScraper('hearthstone')
     rc.get_teams()
