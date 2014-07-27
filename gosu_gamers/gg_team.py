@@ -23,6 +23,7 @@ class TeamScraper:
         self.teams = []
 
     def get_teams(self):
+        """Fills up self.teams with team object with rank, name, country, score and rank_change if possible"""
         request = requests.get('http://www.gosugamers.net/{game}/rankings#team'.format(game=self.game))
         soup = bs4.BeautifulSoup(request.content)
         total_pages = re.findall('=([0-9]+)', soup.find(text='Last').parent.parent['href'])[0]
@@ -33,19 +34,26 @@ class TeamScraper:
             soup = bs4.BeautifulSoup(request.content)
             table_rows = soup.find_all('tr', class_='ranking-link')
             for tr in table_rows:
+                rank = ''
                 try:
                     rank = tr.td.div.string
                     country = tr.find('span', class_='main').span['title']
                     name = tr.find('span', class_='main').text.strip()
                     score = tr.find('td', class_='numbers').string
                     rank_change = tr.find('td', class_='rank-change').i['title']
-                    self.teams.append(Team(name, country, rank, score, rank_change))
+                    team_id = tr['data-id']
+                    self.teams.append(Team(name, country, rank, score, rank_change, team_id))
                 except AttributeError:
                     print('failed to get rank:', rank)
 
+    def find_team(self, team):
+        if not self.teams:
+            self.get_teams()
+
 
 if __name__ == '__main__':
-    rc = TeamScraper('hearthstone')
+    #testing
+    rc = TeamScraper('dota2')
     rc.get_teams()
     for r in rc.teams:
         print(r)
