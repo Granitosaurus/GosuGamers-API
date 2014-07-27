@@ -4,7 +4,7 @@ GosuGamers-API
 Python unofficial API/Scraper for http://gosugamers.net
 
 #Prerequisites:
-Written in Python 3.4  
+Written in Python 3.4 
 **BeautifulSoup 4** - https://pypi.python.org/pypi/beautifulsoup4/  
 >pip install beautifulsoup4  
 
@@ -12,6 +12,8 @@ Written in Python 3.4
 >pip install requests
 
 #Example:
+See examples folder  
+i.e.:  
 ```python
 def example_all_matches():
     """Example that outputs all of the matches from dota2 page"""
