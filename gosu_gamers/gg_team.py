@@ -22,6 +22,10 @@ class TeamScraper:
         self.game = game
         self.teams = []
 
+    def make_dict(self):
+        """Returns list of dictionaries for json stoage"""
+        return [team.make_dict(fill=True) for team in self.teams]
+
     def get_teams(self):
         """Fills up self.teams with team object with rank, name, country, score and rank_change if possible"""
         request = requests.get('http://www.gosugamers.net/{game}/rankings#team'.format(game=self.game))
@@ -55,5 +59,6 @@ if __name__ == '__main__':
     #testing
     rc = TeamScraper('dota2')
     rc.get_teams()
-    for r in rc.teams:
-        print(r)
+    import json
+    json_data = json.dumps(rc.make_dict())
+    print(json_data)
