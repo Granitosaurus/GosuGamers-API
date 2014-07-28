@@ -23,7 +23,7 @@ class TeamScraper:
         self.teams = []
 
     def make_dict(self):
-        """Returns list of dictionaries for json stoage"""
+        """Returns list of dictionaries for json storage"""
         return [team.make_dict(fill=True) for team in self.teams]
 
     def get_teams(self):

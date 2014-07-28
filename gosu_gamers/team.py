@@ -82,6 +82,7 @@ class Team:
             manager = self.manager.make_dict()
         except AttributeError:
             manager = ''
+        print('writing json for: #{} {}'.format(self.rank, self.name))
         data = {
             'meta': {
                 'team id': self.team_id,

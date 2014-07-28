@@ -18,27 +18,12 @@ def get_live_matches(game, file_name):
     file_name - output file name
     """
     gosu = gg_match.MatchScraper(game)
-    gosu.find_live_matches()
-    if not gosu.live_matches:
-        print("No live matches found")
+    gosu.find_recent_matches()
+    if not gosu.recent_matches:
+        print("No matches found")
         return ''
-    dicts = []
-    for match in gosu.live_matches:
-        match_dict = {
-            'tournament': match.tournament,
-            'team1': {
-                'name': match.team1,
-                'bet ratio': match.team1_bet,
-                'score': match.team1_score
-            },
-            'team2': {
-                'name': match.team2,
-                'bet ratio': match.team2_bet,
-                'score': match.team2_score
-            }
-
-        }
-        dicts.append(match_dict)
+    dicts = gosu.recent_make_dict()
+    print(dicts)
     json_data = json.dumps(dicts)
     with open(file_name, 'w') as live:
         live.writelines(json_data)

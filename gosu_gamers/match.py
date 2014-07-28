@@ -29,6 +29,23 @@ class Match:
                 return team
         return team_name
 
+    def make_dict(self):
+        """Returns dictionary of object data for json storage"""
+        data = {
+            'team 1': {
+                'bet': self.team1_bet,
+                'score': self.team1_score
+            },
+            'team 2': {
+                'bet': self.team2_bet,
+                'score': self.team2_score
+            },
+            'live in': self.live_in,
+            'tounament': self.tournament,
+            'has_vods': self.has_vods
+        }
+        return data
+
     def __str__(self):
         return '{team1} {bet1} vs {bet2} {team2} in: {live_in}' \
                '\n\tScore: {s1} : {s2}' \
