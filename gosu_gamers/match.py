@@ -24,6 +24,7 @@ class Match:
 
     @staticmethod
     def fix_team_name(team_name):
+        """Fixes team name if it's shortened by gosugamers"""
         for team in KNOWN_TEAMS:
             if team_name.replace('...', '').lower() in team.lower():
                 return team

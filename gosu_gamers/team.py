@@ -28,6 +28,7 @@ class Team:
         self.description = ''
 
     def check_data(self):
+        """Checks if all object data is filled in"""
         return all([self.rank, self.region_rank, self.country, self.name, self.score, self.rank_change, self.team_id,
                     self.url, self.team_members, self.manager, self.description])
 
@@ -72,7 +73,7 @@ class Team:
 
     def make_dict(self, fill=False):
         """
-        Returns a formated unordered dictionary of all team data
+        Returns a formatted unordered dictionary of all team data
         Keyword Arguments:
         fill - if true will try to fill in every element of the Team object before outputting dict. [Default = False]
         """
