@@ -48,6 +48,9 @@ class MatchScraper:
     def all_make_dict(self):
         return [match.make_dict() for match in self.all_matches]
 
+    def history_dict(self):
+        return [match.make_dict() for match in self.history_matches]
+
     def find_all_matches(self):
         self.find_upcoming_matches()
         self.find_live_matches()
