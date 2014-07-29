@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='gosu_gamers',
-    version='0.11',
+    version='0.12',
     packages=['', 'gosu_gamers', 'gosu_gamers.examples'],
     url='',
     license='',
