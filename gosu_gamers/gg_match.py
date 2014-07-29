@@ -1,6 +1,7 @@
 """
 Package for the retrieval of matches on http://www.gosugamers.com
 """
+import re
 
 import urllib.request
 import bs4
@@ -22,15 +23,17 @@ class MatchScraper:
     """
     #TODO implement detailed recent matches
     def __init__(self, game):
+        self.game = game
         if game not in GAMES:
             print('game no in ')
             raise AttributeError("parsed games must be one of: {}".format(', '.join(GAMES)))
-        self.request = requests.get('http://www.gosugamers.net/{game}/gosubet'.format(game=game))
+        self.request = requests.get('http://www.gosugamers.net/{game}/gosubet'.format(game=self.game))
         self.soup = bs4.BeautifulSoup(self.request.content)
         self.all_matches = []
         self.upcoming_matches = []
         self.recent_matches = []
         self.live_matches = []
+        self.history_matches = []
 
     def live_make_dict(self):
         """Returns list of dictionaries for json storage"""
@@ -64,6 +67,19 @@ class MatchScraper:
         recent_matches = self.soup.find_all('div', class_='content')[2]
         recent_matches = recent_matches.find_all('tr')
         self._find_matches(recent_matches, self.recent_matches)
+
+    def find_all_history(self):
+        total_pages = int(re.findall('=([0-9]+)', self.soup.find(text='Last').parent.parent['href'])[0])
+        for page in range(2, total_pages+1):
+            print('-doing history page {}'.format(page))
+            request = requests.get('http://www.gosugamers.net/{game}/gosubet?r-page={page}'.format(game=self.game,
+                                                                                                   page=page))
+            soup = bs4.BeautifulSoup(request.content)
+            matches = soup.find_all('div', class_='content')[2]
+            matches = matches.find_all('tr')
+            # print(matches)
+            self._find_matches(matches, self.history_matches)
+
 
     def find_live_matches(self):
         """Finds upcoming matches and fills up self.upcoming_matches list"""
@@ -112,4 +128,5 @@ class MatchScraper:
 
 
 if __name__ == '__main__':
-    pass
+    ms = MatchScraper('dota2')
+    ms.find_all_history()

@@ -31,7 +31,7 @@ class TeamScraper:
         request = requests.get('http://www.gosugamers.net/{game}/rankings#team'.format(game=self.game))
         soup = bs4.BeautifulSoup(request.content)
         total_pages = re.findall('=([0-9]+)', soup.find(text='Last').parent.parent['href'])[0]
-        total_pages = int(total_pages)
+        total_pages = int(1, total_pages)
         for page in range(total_pages+1):
             request = requests.get('http://www.gosugamers.net/{game}/rankings?page={page}#team'
                                    .format(game=self.game, page=page))
