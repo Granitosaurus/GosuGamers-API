@@ -36,22 +36,27 @@ class MatchScraper:
         self.history_matches = []
 
     def live_make_dict(self):
-        """Returns list of dictionaries for json storage"""
+        """Returns list of live match dictionaries for json storage"""
         return [match.make_dict() for match in self.live_matches]
 
     def recent_make_dict(self):
+        """Returns list of recent match dictionaries for json storage"""
         return [match.make_dict() for match in self.recent_matches]
 
     def upcoming_make_dict(self):
+        """Returns list of upcoming match dictionaries for json storage"""
         return [match.make_dict() for match in self.upcoming_matches]
 
     def all_make_dict(self):
+        """Returns list of all match dictionaries for json storage"""
         return [match.make_dict() for match in self.all_matches]
 
     def history_dict(self):
+        """Returns list of match history dictionaries for json storage"""
         return [match.make_dict() for match in self.history_matches]
 
     def find_all_matches(self):
+        """Finds all matches (live, upcoming, recent)"""
         self.find_upcoming_matches()
         self.find_live_matches()
         self.find_recent_matches()
@@ -72,6 +77,7 @@ class MatchScraper:
         self._find_matches(recent_matches, self.recent_matches)
 
     def find_all_history(self):
+        """Finds match history and fills up self.history_matches list"""
         total_pages = int(re.findall('=([0-9]+)', self.soup.find(text='Last').parent.parent['href'])[0])
         for page in range(2, total_pages+1):
             print('-doing history page {}'.format(page))
@@ -82,7 +88,6 @@ class MatchScraper:
             matches = matches.find_all('tr')
             # print(matches)
             self._find_matches(matches, self.history_matches)
-
 
     def find_live_matches(self):
         """Finds upcoming matches and fills up self.upcoming_matches list"""
@@ -132,4 +137,4 @@ class MatchScraper:
 
 if __name__ == '__main__':
     ms = MatchScraper('dota2')
-    ms.find_all_history()
+    # ms.find_all_history()
