@@ -72,62 +72,45 @@ class TeamScraper:
             raise AttributeError("Object team list is empty")
         results = []
         for team in self.teams:
-            all_args=[]
-            if name:
-                if name.lower() == team.name.lower():
-                    all_args.append(True)
+            all_args = []
+            if name is not None:
+                all_args.append(name.lower() == team.name.lower())
+            if country is not None:
+                all_args.append(country.lower() == team.country.lower())
+            if rank_exactly is not None:
+                all_args.append(rank_exactly == team.rank)
+            if rank_higher is not None:
+                if rank_higher == '':
+                    all_args.append(rank_higher == team.rank)
                 else:
-                    all_args.append(False)
-            if country:
-                if country.lower() == team.country.lower():
-                    all_args.append(True)
+                    all_args.append(int(rank_higher) > int(team.rank))
+            if rank_lower is not None:
+                if rank_lower == '':
+                    all_args.append(rank_lower == team.rank)
                 else:
-                    all_args.append(False)
-            if rank_exactly:
-                if rank_exactly == team.rank:
-                    all_args.append(True)
+                    all_args.append(int(rank_lower) < int(team.rank))
+            if score_exactly is not None:
+                all_args.append(score_exactly == team.score)
+            if rank_change is not None:
+                all_args.append(rank_change == team.rank_change)
+            if team_id is not None:
+                all_args.append(team_id == team.team_id)
+            if score_higher is not None:
+                if score_higher == '':
+                    all_args.append(score_higher == team.score)
                 else:
-                    all_args.append(False)
-            if rank_higher:
-                if int(rank_higher) > int(team.rank):
-                    all_args.append(True)
+                    all_args.append(int(score_higher) < int(team.score.replace(',', '')))
+            if score_lower is not None:
+                if score_lower == '':
+                    all_args.append(score_lower == team.score)
                 else:
-                    all_args.append(False)
-            if rank_lower:
-                if int(rank_lower) < int(team.rank):
-                    all_args.append(True)
+                    all_args.append(int(score_lower) > int(team.score.replace(',', '')))
+            if partial_name is not None:
+                if partial_name == '':
+                    all_args.append(partial_name == team.name)
                 else:
-                    all_args.append(False)
-            if score_exactly:
-                if score_exactly == team.score:
-                    all_args.append(True)
-                else:
-                    all_args.append(False)
-            if rank_change:
-                if rank_change == team.rank_change:
-                    all_args.append(True)
-                else:
-                    all_args.append(False)
-            if team_id:
-                if team_id == team.team_id:
-                    all_args.append(True)
-                else:
-                    all_args.append(False)
-            if score_higher:
-                if int(score_higher) < int(team.score.replace(',','')):
-                    all_args.append(True)
-                else:
-                    all_args.append(False)
-            if score_lower:
-                if int(score_lower) > int(team.score.replace(',','')):
-                    all_args.append(True)
-                else:
-                    all_args.append(False)
-            if partial_name:
-                if partial_name.lower() in team.name.lower():
-                    all_args.append(True)
-                else:
-                    all_args.append(False)
+                    all_args.append(partial_name.lower() in team.name.lower())
+
             if all(all_args):
                 results.append(team)
         return results
@@ -137,6 +120,6 @@ if __name__ == '__main__':
     #testing
     rc = TeamScraper('dota2')
     rc.get_teams()
-    search = rc.find_team(rank_lower='10')
+    search = rc.find_team(rank_higher='')
     for team in search:
         print(team.name, team.rank)
