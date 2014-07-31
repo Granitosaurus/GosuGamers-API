@@ -110,6 +110,15 @@ class MatchScraper:
             team2 = match.find('span', class_='opp2').text.strip()
             team2_bet = match.find('span', class_='bet2').text.strip()[1:-1]
             try:
+                match_id = match.find('a', class_='match')['href']
+                match_id = match_id.split('/')[-1].split('-')[0]
+            except AttributeError:
+                match_id = ''
+            try:
+                url = DOMAIN[:-1] + match.find('a', class_='match')['href']
+            except AttributeError:
+                url = ''
+            try:
                 live_in = match.find('span', class_='live-in').text.strip()
             except AttributeError:
                 live_in = ""
@@ -121,7 +130,7 @@ class MatchScraper:
                 team1_score = ""
                 team2_score = ""
             try:
-                tournament = DOMAIN + match.find(class_='tournament').a['href']
+                tournament = DOMAIN[:-1] + match.find(class_='tournament').a['href']
             except AttributeError:
                 tournament = ""
             try:
@@ -132,7 +141,7 @@ class MatchScraper:
             except AttributeError:
                 has_vods = False
             to_list.append(Match(team1, team1_score, team1_bet, team2, team2_score, team2_bet, live_in, tournament,
-                                 has_vods))
+                                 has_vods, match_id, url))
 
 
 if __name__ == '__main__':
