@@ -4,7 +4,8 @@ GosuGamers-API
 Python unofficial API/Scraper for http://gosugamers.net
 
 #Prerequisites:
-Written in Python 3.4 
+Written in Python 3.4  
+pip install -r requirements.txt or do it manually with pip.  
 **BeautifulSoup 4** - https://pypi.python.org/pypi/beautifulsoup4/  
 >pip install beautifulsoup4  
 
