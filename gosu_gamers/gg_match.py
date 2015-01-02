@@ -2,12 +2,14 @@
 Package for the retrieval of matches on http://www.gosugamers.com
 """
 import re
+from urllib.parse import urljoin
 
-import urllib.request
 import bs4
 import requests
+from lxml import html
 
-#local
+
+# local
 from gosu_gamers.match import Match
 from gosu_gamers.meta import GAMES, DOMAIN
 __author__ = 'rebsadran'
@@ -21,64 +23,51 @@ class MatchScraper:
     game - game of which the matches will be scrapped. Choices: dota2,lol,hearthstone (heroes of the storm
     not supported by gosugamers.net yet)
     """
-    #TODO implement detailed recent matches
     def __init__(self, game):
         self.game = game
         if game not in GAMES:
             print('game no in ')
             raise AttributeError("parsed games must be one of: {}".format(', '.join(GAMES)))
-        self.request = requests.get('http://www.gosugamers.net/{game}/gosubet'.format(game=self.game))
-        self.soup = bs4.BeautifulSoup(self.request.content)
-        self.all_matches = []
-        self.upcoming_matches = []
-        self.recent_matches = []
-        self.live_matches = []
-        self.history_matches = []
-
-    def live_make_dict(self):
-        """Returns list of live match dictionaries for json storage"""
-        return [match.make_dict() for match in self.live_matches]
-
-    def recent_make_dict(self):
-        """Returns list of recent match dictionaries for json storage"""
-        return [match.make_dict() for match in self.recent_matches]
-
-    def upcoming_make_dict(self):
-        """Returns list of upcoming match dictionaries for json storage"""
-        return [match.make_dict() for match in self.upcoming_matches]
-
-    def all_make_dict(self):
-        """Returns list of all match dictionaries for json storage"""
-        return [match.make_dict() for match in self.all_matches]
-
-    def history_dict(self):
-        """Returns list of match history dictionaries for json storage"""
-        return [match.make_dict() for match in self.history_matches]
+        self.request = requests.get('http://www.gosugamers.net/{game}/gosubet'.format(game=self.game)).content
+        self.tree = html.fromstring(self.request)
 
     def find_all_matches(self):
         """Finds all matches (live, upcoming, recent)"""
-        self.find_upcoming_matches()
-        self.find_live_matches()
-        self.find_recent_matches()
-        self.all_matches.extend(self.live_matches)
-        self.all_matches.extend(self.recent_matches)
-        self.all_matches.extend(self.upcoming_matches)
+        upcoming = self.find_upcoming_matches()
+        live = self.find_live_matches()
+        recent = self.find_recent_matches()
+        return upcoming + live + recent
+
+    def find_live_matches(self):
+        """
+        Finds live matches
+        :returns list of Match objects
+        """
+        live_matches = self.tree.xpath('//h2[contains(text(),"Live")]/'
+                                           'following-sibling::div[@class="content"]//tr')
+        return list(self._find_matches(live_matches))
 
     def find_upcoming_matches(self):
-        """Finds upcoming matches and fills up self.upcoming_matches list"""
-        upcoming_matches = self.soup.find_all('div', class_='content')[1]
-        upcoming_matches = upcoming_matches.find_all('tr')
-        self._find_matches(upcoming_matches, self.upcoming_matches)
+        """
+        Finds upcoming matches
+        :returns list of Match objects
+        """
+        upcoming_matches = self.tree.xpath('//h2[contains(text(),"Upcoming")]/'
+                                           'following-sibling::div[@class="content"]//tr')
+        return list(self._find_matches(upcoming_matches))
 
     def find_recent_matches(self):
-        """Finds upcoming matches and fills up self.upcoming_matches list"""
-        recent_matches = self.soup.find_all('div', class_='content')[2]
-        recent_matches = recent_matches.find_all('tr')
-        self._find_matches(recent_matches, self.recent_matches)
+        """
+        Finds recent matches
+        :returns list of Match objects
+        """
+        recent_matches = self.tree.xpath('//h2[contains(text(),"Recent")]/'
+                                           'following-sibling::div[@class="content"]//tr')
+        return list(self._find_matches(recent_matches))
 
     def find_all_history(self):
         """Finds match history and fills up self.history_matches list"""
-        total_pages = int(re.findall('=([0-9]+)', self.soup.find(text='Last').parent.parent['href'])[0])
+        total_pages = int(re.findall('=([0-9]+)', self.tree.find(text='Last').parent.parent['href'])[0])
         for page in range(2, total_pages+1):
             print('-doing history page {}'.format(page))
             request = requests.get('http://www.gosugamers.net/{game}/gosubet?r-page={page}'.format(game=self.game,
@@ -87,63 +76,38 @@ class MatchScraper:
             matches = soup.find_all('div', class_='content')[2]
             matches = matches.find_all('tr')
             # print(matches)
-            self._find_matches(matches, self.history_matches)
+            yield list(self._find_matches(matches))
 
-    def find_live_matches(self):
-        """Finds upcoming matches and fills up self.upcoming_matches list"""
-        live_matches = self.soup.find_all('div', class_='content')[0]
-        live_matches = live_matches.find_all('tr')
-        self._find_matches(live_matches, self.live_matches)
 
     @staticmethod
-    def _find_matches(match_soup, to_list):
+    def _find_matches(match_trees):
         """
-        Static method used by match finders to find matches
-
-        Keyword arguments:
-        match_soup - bs4.BeautifulSoup object which contains tags of table rows
-        to_list - list where the data matches will be saved
+        Static method used by match finders to find matches from
+        :param match_trees: list of html trees (usually table rows)
         """
-        for match in match_soup:
-            team1 = match.find('span', class_='opp1').text.strip()
-            team1_bet = match.find('span', class_='bet1').text.strip()[1:-1]
-            team2 = match.find('span', class_='opp2').text.strip()
-            team2_bet = match.find('span', class_='bet2').text.strip()[1:-1]
-            try:
-                match_id = match.find('a', class_='match')['href']
-                match_id = match_id.split('/')[-1].split('-')[0]
-            except AttributeError:
-                match_id = ''
-            try:
-                url = DOMAIN[:-1] + match.find('a', class_='match')['href']
-            except AttributeError:
-                url = ''
-            try:
-                live_in = match.find('span', class_='live-in').text.strip()
-            except AttributeError:
-                live_in = ""
-            try:
-                score = match.find_all('span', class_='score')
-                team1_score = score[0].text.strip()
-                team2_score = score[1].text.strip()
-            except (AttributeError, IndexError):
-                team1_score = ""
-                team2_score = ""
-            try:
-                tournament = DOMAIN[:-1] + match.find(class_='tournament').a['href']
-            except AttributeError:
-                tournament = ""
-            try:
-                if match.find(class_='vod').img:
-                    has_vods = True
-                else:
-                    has_vods = False
-            except AttributeError:
-                has_vods = False
-            to_list.append(Match(team1, team1_score, team1_bet, team2, team2_score, team2_bet, live_in, tournament,
-                                 has_vods, match_id, url))
+        for match in match_trees:
+            # print(match.string)
+            team1 = ''.join(match.xpath('.//span[contains(@class,"opp1")]//text()')).strip()
+            team2 = ''.join(match.xpath('.//span[contains(@class,"opp2")]//text()')).strip()
+            team1_bet = ''.join(match.xpath('.//span[contains(@class,"bet1")]//text()')).strip()
+            team2_bet = ''.join(match.xpath('.//span[contains(@class,"bet2")]//text()')).strip()
 
+            match_url = ''.join(match.xpath('.//a[contains(@class,"match")]/@href')).strip()
+            match_id = match_url.rsplit('/', 1)[-1].split('-')[0] if match_url else 'not found'
+            match_url = urljoin(DOMAIN, match_url)
+            live_in = ''.join(match.xpath('.//span[contains(@class,"live-in")]/text()')).strip()
+
+            score = match.xpath('.//span[contains(@class,"score")]//text()')
+            team1_score = score[0] if score else ''
+            team2_score = score[1] if len(score) > 1 else ''
+
+            tournament = ''.join(match.xpath('.//a[contains(@class,"tournament")]/@href')).strip()
+            tournament = urljoin(DOMAIN, tournament)
+
+            has_vods = bool(match.xpath('.//span[contains(@class,"vod")]/img'))
+            yield Match(team1, team1_score, team1_bet, team2, team2_score, team2_bet, live_in, tournament,
+                                 has_vods, match_id, match_url)
 
 if __name__ == '__main__':
     ms = MatchScraper('dota2')
-    # ms.find_all_history()
+    print([game.url for game in ms.find_upcoming_matches()])
