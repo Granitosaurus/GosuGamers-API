@@ -28,8 +28,16 @@ class MatchScraper:
         if game not in GAMES:
             print('game no in ')
             raise AttributeError("parsed games must be one of: {}".format(', '.join(GAMES)))
-        self.request = requests.get('http://www.gosugamers.net/{game}/gosubet'.format(game=self.game)).content
-        self.tree = html.fromstring(self.request)
+        self.url = 'http://www.gosugamers.net/{game}/gosubet'.format(game=self.game)
+
+    def get_tree(self):
+        """
+        Downloads page and makes a html tree
+        :return: HtmlElement tree
+        """
+        request = requests.get(self.url)
+        tree = html.fromstring(request.content)
+        return tree
 
     def find_all_matches(self):
         """Finds all matches (live, upcoming, recent)"""
@@ -43,7 +51,8 @@ class MatchScraper:
         Finds live matches
         :returns list of Match objects
         """
-        live_matches = self.tree.xpath('//h2[contains(text(),"Live")]/'
+        tree = self.get_tree()
+        live_matches = tree.xpath('//h2[contains(text(),"Live")]/'
                                            'following-sibling::div[@class="content"]//tr')
         return list(self._find_matches(live_matches))
 
@@ -52,7 +61,8 @@ class MatchScraper:
         Finds upcoming matches
         :returns list of Match objects
         """
-        upcoming_matches = self.tree.xpath('//h2[contains(text(),"Upcoming")]/'
+        tree = self.get_tree()
+        upcoming_matches = tree.xpath('//h2[contains(text(),"Upcoming")]/'
                                            'following-sibling::div[@class="content"]//tr')
         return list(self._find_matches(upcoming_matches))
 
@@ -61,22 +71,24 @@ class MatchScraper:
         Finds recent matches
         :returns list of Match objects
         """
-        recent_matches = self.tree.xpath('//h2[contains(text(),"Recent")]/'
+        tree = self.get_tree()
+        recent_matches = tree.xpath('//h2[contains(text(),"Recent")]/'
                                            'following-sibling::div[@class="content"]//tr')
         return list(self._find_matches(recent_matches))
 
-    def find_all_history(self):
-        """Finds match history and fills up self.history_matches list"""
-        total_pages = int(re.findall('=([0-9]+)', self.tree.find(text='Last').parent.parent['href'])[0])
-        for page in range(2, total_pages+1):
-            print('-doing history page {}'.format(page))
-            request = requests.get('http://www.gosugamers.net/{game}/gosubet?r-page={page}'.format(game=self.game,
-                                                                                                   page=page))
-            soup = bs4.BeautifulSoup(request.content)
-            matches = soup.find_all('div', class_='content')[2]
-            matches = matches.find_all('tr')
-            # print(matches)
-            yield list(self._find_matches(matches))
+    # def find_all_history(self):
+    #     """Finds match history and fills up self.history_matches list"""
+    #     TODO make this with asyncio or something because it takes ages
+        # total_pages = int(re.findall('=([0-9]+)', self.tree.find(text='Last').parent.parent['href'])[0])
+        # for page in range(2, total_pages+1):
+        #     print('-doing history page {}'.format(page))
+        #     request = requests.get('http://www.gosugamers.net/{game}/gosubet?r-page={page}'.format(game=self.game,
+        #                                                                                            page=page))
+        #     soup = bs4.BeautifulSoup(request.content)
+        #     matches = soup.find_all('div', class_='content')[2]
+        #     matches = matches.find_all('tr')
+        #     print(matches)
+            # yield list(self._find_matches(matches))
 
 
     @staticmethod
