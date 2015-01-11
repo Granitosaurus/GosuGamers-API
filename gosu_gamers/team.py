@@ -1,18 +1,15 @@
-"""
-Module for gosugamers.net team data storage and manipulation
-"""
 import json
-import re
 from urllib.parse import quote, urljoin
 from lxml import html
 import requests
+
 #local
-from gosu_gamers.player import Player
+from gosu_gamers.storage import Storage
 
 __author__ = 'Bernard @ Bernardas.Alisauskas@gmail.com'
 
 
-class Team:
+class Team(Storage):
     """Storage class for team data"""
     def __init__(self, name='', country='', rank='', score='', rank_change='',
                  team_id='', url='', region_rank='', game='', social=None):
@@ -24,7 +21,7 @@ class Team:
         self.rank_change = rank_change
         self.team_id = team_id
         self.game = game
-        self.url = url or self.make_url()
+        self.url = url or self._make_url()
         self.team_members = []
         self.manager = None
         self.social = social
@@ -32,7 +29,7 @@ class Team:
         self.match_history_url = urljoin(self.url, 'matches')
         self.player_history_url = urljoin(self.url, 'player-history')
 
-    def make_url(self):
+    def _make_url(self):
         """Makes url to the team's page from team_id and team_name"""
         team_name = quote(self.name)
         return 'http://www.gosugamers.net/{}/teams/{}-{}'.format(self.game, self.team_id, team_name)
@@ -58,23 +55,6 @@ class Team:
             self.country = ''.join(tree.xpath("//div[@class='teamCountry']/span[contains(@class, 'flag')]/@title"))
         if not self.social:
             self.social = tree.xpath("//div[@class='social']/a/@href")
-        #Players
-        # if not self.team_members:
-        #     players = tree.find_all('a', class_='player')
-        #     for player in players:
-        #         nickname = player.h5.string
-        #         fullname = player.find_all('span')[1].string
-        #         if player.find('span', class_='manager'):
-        #             manager = True
-        #         else:
-        #             manager = False
-        #         photo_url = DOMAIN[:-1] + re.findall("\('(.*?)'\)", player.div.attrs['style'])[0]
-        #         famous_heroes = [item['alt'] for item in player.find('div', class_='heroes').find_all('img')]
-        #         url = DOMAIN + player['href']
-        #         if not manager:
-        #             self.team_members.append(Player(nickname, fullname, photo_url, famous_heroes, url))
-        #         else:
-        #             self.manager = Player(nickname, fullname, photo_url, famous_heroes, url)
 
     def __dict__(self, fill=False):
         """
@@ -104,27 +84,9 @@ class Team:
         }
         return data
 
-    # def get_url(self, team_id=''):
-    #     """Finds an url to the team's profile from team id"""
-    #     if not team_id:
-    #         if not self.team_id:
-    #             raise AttributeError("team_id not set")
-    #         else:
-    #             team_id = self.team_id
-    #
-    #     if not self.url:
-    #         request = requests.get('http://www.gosugamers.net/rankings/show/team/{team_id}'.format(team_id=team_id))
-    #         soup = bs4.BeautifulSoup(request.content)
-    #         url = ''
-    #         try:
-    #             url = DOMAIN + soup.find('div', class_='base').h3.a['href']
-    #         except AttributeError:
-    #             print("Invalid team_id")
-    #         self.url = url
-    #         return self.url
-
     def __str__(self):
-        return 'game: {game}\nrank: {rank}\nregion rank: {rrank}\ncountry: {country}\nname: {name}\nscore: {score}\nrank change: {rank_change}\n' \
+        return 'game: {game}\nrank: {rank}\nregion rank: {rrank}\ncountry: {country}\nname: {name}\nscore: {score}' \
+               '\nrank change: {rank_change}\n' \
                'team_id: {team_id}\nsocial: {social}\nmatch history: {mhistory}\nplayer history: {phistory}\n' \
                ''\
             .format(rank=self.world_rank, country=self.country, name=self.name, score=self.rating,

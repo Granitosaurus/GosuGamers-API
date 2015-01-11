@@ -4,6 +4,7 @@ Package for retrieval of team ranks on http://www.gosugamers.net
 
 #local
 import re
+from gosu_gamers import meta
 from gosu_gamers.team import Team
 #outer
 import requests
@@ -16,6 +17,7 @@ class _TeamScraper:
     """Scraper for team ranks"""
     url = ''
     game = ''
+
 
     def get_teams(self):
         """Fills up self.teams with team object with rank, name, country, score and rank_change if possible"""
@@ -36,7 +38,6 @@ class _TeamScraper:
                 rank_change = ''.join(tr.xpath(".//td[@class='rank-change']/i/@title"))
                 team_id = ''.join(tr.xpath("./@data-id"))
                 yield Team(name, country, rank, score, rank_change, team_id, game=self.game)
-
     # def find_team(self, name=None, country=None, rank_exactly=None, score_exactly=None, rank_change=None, team_id=None,
     #               score_lower=None, score_higher=None, partial_name=None, rank_lower=None, rank_higher=None):
     #     """
@@ -104,33 +105,49 @@ class _TeamScraper:
 
 class CsGoTeamScraper(_TeamScraper):
     url = 'http://www.gosugamers.net/counterstrike/rankings'
-    game = 'counterstrike'
+    game = meta.CSGO
 
 
 class Dota2TeamScraper(_TeamScraper):
     url = 'http://www.gosugamers.net/dota2/rankings'
-    game = 'dota2'
+    game = meta.DOTA2
 
 
 class LolTeamScraper(_TeamScraper):
     url = 'http://www.gosugamers.net/lol/rankings'
-    game = 'lol'
+    game = meta.LOL
 
 
 class HearthstoneTeamScraper(_TeamScraper):
     url = 'http://www.gosugamers.net/hearthstone/rankings'
-    game = 'hearthstone'
+    game = meta.HEARTHSTONE
 
 
 class HotsTeamScraper(_TeamScraper):
     url = 'http://www.gosugamers.net/heroesofthestorm/rankings'
-    game = 'heroesofthestorm'
+    game = meta.HOTS
 
+
+def get_scraper(game):
+    scrapers = {
+        meta.DOTA2: Dota2TeamScraper,
+        meta.LOL: LolTeamScraper,
+        meta.CSGO: CsGoTeamScraper,
+        meta.HOTS: HotsTeamScraper,
+        meta.HEARTHSTONE: HearthstoneTeamScraper
+    }
+    if game in scrapers:
+        return scrapers[game]()
+    else:
+        raise AttributeError('Scraper for {} not found\navailable keys: {}'
+                             .format(game, scrapers.keys()))
 
 if __name__ == '__main__':
     #testing
-    dota_ts = Dota2TeamScraper()
-    dota_teams = list(dota_ts.get_teams())
-    example_team = dota_teams[1]
-    example_team.get_all_details()
-    print(example_team)
+    # dota_ts = Dota2TeamScraper()
+    # dota_teams = list(dota_ts.get_teams())
+    # example_team = dota_teams[1]
+    # example_team.get_all_details()
+    # print(example_team)
+
+    print(get_scraper('dota3'))

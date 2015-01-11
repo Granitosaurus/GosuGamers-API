@@ -1,6 +1,7 @@
 """
 Module for gosugamers.net player data storage and manipulation
 """
+import json
 
 __author__ = 'Bernard @ Bernardas.Alisauskas@gmail.com'
 
@@ -15,7 +16,11 @@ class Player:
         self.famous_heroes = famous_heroes
         self.url = url
 
-    def make_dict(self):
+    def get_json(self):
+        """Returns json"""
+        return json.loads(self.__dict__())
+
+    def __dict__(self):
         """Returns unordered dict of Player data"""
         data = {
             'meta': {

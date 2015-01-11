@@ -45,7 +45,7 @@ class MatchScraper:
         :returns list of Match objects
         """
         tree = self.get_tree()
-        live_matches = tree.xpath('//h2[contains(text(),"Live")]/'
+        live_matches = tree.xpath('//*[self::h1 or self::h2][contains(text(),"Live")]/'
                                   'following-sibling::div[@class="content"]//tr')
         return list(self._find_matches(live_matches))
 
@@ -55,7 +55,7 @@ class MatchScraper:
         :returns list of Match objects
         """
         tree = self.get_tree()
-        upcoming_matches = tree.xpath('//h2[contains(text(),"Upcoming")]/'
+        upcoming_matches = tree.xpath('//*[self::h1 or self::h2][contains(text(),"Upcoming")]/'
                                       'following-sibling::div[@class="content"]//tr')
         return list(self._find_matches(upcoming_matches))
 
@@ -65,7 +65,7 @@ class MatchScraper:
         :returns list of Match objects
         """
         tree = self.get_tree()
-        recent_matches = tree.xpath('//h2[contains(text(),"Recent")]/'
+        recent_matches = tree.xpath('//*[self::h1 or self::h2][contains(text(),"Recent")]/'
                                     'following-sibling::div[@class="content"]//tr')
         return list(self._find_matches(recent_matches))
 
@@ -75,18 +75,17 @@ class MatchScraper:
         :param match_trees: list of html trees (usually table rows)
         """
         for match in match_trees:
-            # print(match.string)
             team1 = ''.join(match.xpath('.//span[contains(@class,"opp1")]//text()')).strip()
             team2 = ''.join(match.xpath('.//span[contains(@class,"opp2")]//text()')).strip()
-            team1_bet = ''.join(match.xpath('.//span[contains(@class,"bet1")]//text()')).strip()
-            team2_bet = ''.join(match.xpath('.//span[contains(@class,"bet2")]//text()')).strip()
+            team1_bet = ''.join(match.xpath('.//span[contains(@class,"bet1")]//text()')).strip('() \n')
+            team2_bet = ''.join(match.xpath('.//span[contains(@class,"bet2")]//text()')).strip('() \n')
 
             match_url = ''.join(match.xpath('.//a[contains(@class,"match")]/@href')).strip()
             match_id = match_url.rsplit('/', 1)[-1].split('-')[0] if match_url else 'not found'
             match_url = urljoin(self.domain, match_url)
             live_in = ''.join(match.xpath('.//span[contains(@class,"live-in")]/text()')).strip()
 
-            score = match.xpath('.//span[contains(@class,"score")]//text()')
+            score = match.xpath('.//span[contains(@class,"score-wrap")]//span[contains(@class, "score")]/text()')
             team1_score = score[0] if score else ''
             team2_score = score[1] if len(score) > 1 else ''
 
@@ -96,20 +95,6 @@ class MatchScraper:
             has_vods = bool(match.xpath('.//span[contains(@class,"vod")]/img'))
             yield Match(self.game, team1, team1_score, team1_bet, team2, team2_score, team2_bet, live_in, tournament,
                         has_vods, match_id, match_url)
-
-     # def find_all_history(self):
-        # """Finds match history and fills up self.history_matches list"""
-        #     TODO make this with asyncio or something because it takes ages
-        # total_pages = int(re.findall('=([0-9]+)', self.tree.find(text='Last').parent.parent['href'])[0])
-        # for page in range(2, total_pages+1):
-        #     print('-doing history page {}'.format(page))
-        #     request = requests.get('http://www.gosugamers.net/{game}/gosubet?r-page={page}'.format(game=self.game,
-        #                                                                                            page=page))
-        #     soup = bs4.BeautifulSoup(request.content)
-        #     matches = soup.find_all('div', class_='content')[2]
-        #     matches = matches.find_all('tr')
-        #     print(matches)
-        # yield list(self._find_matches(matches))
 
 
 class CsGoMatchScraper(MatchScraper):
@@ -138,5 +123,7 @@ class HotsMatchScraper(MatchScraper):
 
 
 if __name__ == '__main__':
-    ms = MatchScraper()
-    print([print(game.__str__()) for game in ms.find_live_matches()])
+    pass
+    ms = Dota2MatchScraper()
+    for game in ms.find_recent_matches():
+        print(game.team1_bet)
