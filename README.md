@@ -2,12 +2,14 @@ GosuGamers-API
 ==============
 
 Python unofficial API/Scraper for http://gosugamers.net
+See examples.
 
 #Prerequisites:
 Written in Python 3.4  
 pip install -r requirements.txt or do it manually with pip.  
-**BeautifulSoup 4** - https://pypi.python.org/pypi/beautifulsoup4/  
+**lxml** - http://lxml.de/  
 >pip install beautifulsoup4  
+Note: installation might be a bit tricky so please see http://lxml.de/installation.html
 
 **Requests** - https://pypi.python.org/pypi/requests/2.3.0
 >pip install requests
@@ -16,27 +18,20 @@ pip install -r requirements.txt or do it manually with pip.
 See examples folder  
 i.e.:  
 ```python
-def example_all_matches():
-    """Example that outputs all of the matches from dota2 page"""
-    ggms = MatchScraper(game='dota2')
-    ggms.find_live_matches()
-    ggms.find_upcoming_matches()
-    ggms.find_recent_matches()
+def print_dota_teams(game, what_to_print=None):
+    dota_team_scraper = gg_team.get_scraper(game)
 
-    print('Live:')
-    [print(lm) for lm in ggms.live_matches]
-    print(''.center(79, '='))
+    if not what_to_print:
+        what_to_print = lambda team: team
 
-    print('Upcoming:')
-    [print(lm) for lm in ggms.upcoming_matches]
-    print(''.center(79, '='))
+    teams = dota_team_scraper.get_teams()
+    for team in teams:
+        print(what_to_print(team))
 
-    print('Recent:')
-    [print(lm) for lm in ggms.recent_matches]
-    print(''.center(79, '='))
+if __name__ == '__main__':
+    print_dota_teams('dota2')
 ```
 
-output as in 2014-07-20 18:58 : http://pastebin.com/raw.php?i=dRGZWpRw
 
 #Usage:
 
