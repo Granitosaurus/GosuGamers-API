@@ -1,0 +1,260 @@
+{
+  "games": [
+    {
+      "game": "counterstrike",
+      "team 2": {
+        "score": "",
+        "bet": "34%"
+      },
+      "match_id": "67050",
+      "url": "http://www.gosugamers.net/counterstrike/tournaments/5792-king-of-majors/matches/67050-fnatic-vs-virtus-pro-cs",
+      "has_vods": false,
+      "live in": "Live",
+      "team 1": {
+        "score": "",
+        "bet": "66%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "dota2",
+      "team 2": {
+        "score": "",
+        "bet": "38%"
+      },
+      "match_id": "66795",
+      "url": "http://www.gosugamers.net/dota2/tournaments/5769-major-all-stars-qualifiers/1507-west/5770-americas/matches/66795-firedota-vs-ehug",
+      "has_vods": false,
+      "live in": "14m 42s",
+      "team 1": {
+        "score": "",
+        "bet": "62%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "heroesofthestorm",
+      "team 2": {
+        "score": "",
+        "bet": "80%"
+      },
+      "match_id": "65988",
+      "url": "http://www.gosugamers.net/heroesofthestorm/tournaments/5704-esl-heroes-major-league/1491-group-stage/5706-americas/matches/65988-murlocsinc-vs-tempo-storm-hots",
+      "has_vods": false,
+      "live in": "2h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "20%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "counterstrike",
+      "team 2": {
+        "score": "",
+        "bet": "3%"
+      },
+      "match_id": "62417",
+      "url": "http://www.gosugamers.net/counterstrike/tournaments/5450-cevo-professional-season-6-regular-season/matches/62417-sapphirekelownadotcom-vs-lunatik-b",
+      "has_vods": false,
+      "live in": "3h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "97%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "counterstrike",
+      "team 2": {
+        "score": "",
+        "bet": "10%"
+      },
+      "match_id": "62370",
+      "url": "http://www.gosugamers.net/counterstrike/tournaments/5450-cevo-professional-season-6-regular-season/matches/62370-counter-logic-gaming-cs-vs-team-liquid-cs",
+      "has_vods": false,
+      "live in": "4h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "90%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "counterstrike",
+      "team 2": {
+        "score": "",
+        "bet": "100%"
+      },
+      "match_id": "62374",
+      "url": "http://www.gosugamers.net/counterstrike/tournaments/5450-cevo-professional-season-6-regular-season/matches/62374-lunatik-b-vs-cloud9-cs",
+      "has_vods": false,
+      "live in": "4h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "0%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "heroesofthestorm",
+      "team 2": {
+        "score": "",
+        "bet": "38%"
+      },
+      "match_id": "65980",
+      "url": "http://www.gosugamers.net/heroesofthestorm/tournaments/5704-esl-heroes-major-league/1491-group-stage/5706-americas/matches/65980-evil-geniuses-hots-vs-2arc-iliad",
+      "has_vods": false,
+      "live in": "4h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "63%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "counterstrike",
+      "team 2": {
+        "score": "",
+        "bet": "100%"
+      },
+      "match_id": "62416",
+      "url": "http://www.gosugamers.net/counterstrike/tournaments/5450-cevo-professional-season-6-regular-season/matches/62416-the-stream-team-vs-cloud9-cs",
+      "has_vods": false,
+      "live in": "5h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "0%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "counterstrike",
+      "team 2": {
+        "score": "",
+        "bet": "29%"
+      },
+      "match_id": "62472",
+      "url": "http://www.gosugamers.net/counterstrike/tournaments/5450-cevo-professional-season-6-regular-season/matches/62472-counter-logic-gaming-cs-vs-mythic-b",
+      "has_vods": false,
+      "live in": "5h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "71%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "dota2",
+      "team 2": {
+        "score": "",
+        "bet": "5%"
+      },
+      "match_id": "64854",
+      "url": "http://www.gosugamers.net/dota2/tournaments/5606-jd-mlg-pro-league-1/1468-league/5610-asia/matches/64854-mineski-dota2-vs-signature-trust",
+      "has_vods": false,
+      "live in": "13h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "69%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "counterstrike",
+      "team 2": {
+        "score": "",
+        "bet": "50%"
+      },
+      "match_id": "67280",
+      "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5794-european-division/matches/67280-team-envyus-vs-virtus-pro-cs",
+      "has_vods": false,
+      "live in": "19h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "50%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "dota2",
+      "team 2": {
+        "score": "",
+        "bet": "8%"
+      },
+      "match_id": "64935",
+      "url": "http://www.gosugamers.net/dota2/tournaments/5606-jd-mlg-pro-league-1/1468-league/5608-europe-b/matches/64935-team-empire-dota2-vs-meepwn-d",
+      "has_vods": false,
+      "live in": "19h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "64%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "counterstrike",
+      "team 2": {
+        "score": "",
+        "bet": "13%"
+      },
+      "match_id": "67274",
+      "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5794-european-division/matches/67274-fnatic-vs-tsm-kinguin",
+      "has_vods": false,
+      "live in": "20h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "88%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "counterstrike",
+      "team 2": {
+        "score": "",
+        "bet": "7%"
+      },
+      "match_id": "63765",
+      "url": "http://www.gosugamers.net/counterstrike/tournaments/5495-esea-season-18-eu-league-play/matches/63765-fnatic-vs-mousesports-cs",
+      "has_vods": false,
+      "live in": "21h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "93%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "counterstrike",
+      "team 2": {
+        "score": "",
+        "bet": "30%"
+      },
+      "match_id": "67281",
+      "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5794-european-division/matches/67281-ninjas-in-pyjamas-vs-titan-cs",
+      "has_vods": false,
+      "live in": "21h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "70%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    },
+    {
+      "game": "dota2",
+      "team 2": {
+        "score": "",
+        "bet": "63%"
+      },
+      "match_id": "64969",
+      "url": "http://www.gosugamers.net/dota2/tournaments/5606-jd-mlg-pro-league-1/1468-league/5607-europe-a/matches/64969-london-conspiracy-dota2-vs-hellraisers-dota2",
+      "has_vods": false,
+      "live in": "21h 14m",
+      "team 1": {
+        "score": "",
+        "bet": "0%"
+      },
+      "tounament": "http://www.gosugamers.net/"
+    }
+  ]
+}
