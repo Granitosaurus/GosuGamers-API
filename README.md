@@ -52,7 +52,9 @@ Use those to scrape games for matches. All of the scraper objects have these met
 
 **FAQ:**  
 Is it possible to retrieve the whole history of matches displayed on gosugamers?  
--Currently the function for that is not available, however
+-Currently the function for that is not available because it would require some asyncronious request system (extra dependancies etc.) though feel free to open an issue or poke me regaring it.  
+Is it possible to retrieve Matchticker part of the website?  
+-Yes and No. Gosugamer Matchticker is just upcoming games section from the matches page so you can retrieve the same info by `find_live_matches()` and `find_upcoming_matches()`.  
 
 ###Match() object - it's a storage object for match data.  
 **game** -  game name (i.e. 'dota2').  
