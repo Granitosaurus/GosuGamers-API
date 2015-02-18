@@ -4,8 +4,10 @@ GosuGamers-API
 Python unofficial API/Scraper for http://gosugamers.net  
 See [Usage](https://github.com/Granitas/GosuGamers-API/#usage) and [examples](https://github.com/Granitas/GosuGamers-API/#example).
 
-#Prerequisites:
+#Installation and Prerequisites:
 Written in Python 3.4  (should work on anything 3+)  
+install: `pip install GIT+https://github.com/Granitas/GosuGamers-API/`  
+prerequisites:  
 pip install -r requirements.txt or do it manually with pip.  
 **lxml** - http://lxml.de/  
 >pip install lxml  
