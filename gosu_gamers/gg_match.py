@@ -47,7 +47,10 @@ class MatchScraper:
         tree = self.get_tree()
         live_matches = tree.xpath('//*[self::h1 or self::h2][contains(text(),"Live")]/'
                                   'following-sibling::div[@class="content"]//tr')
-        return list(self._find_matches(live_matches))
+        found = list(self._find_matches(live_matches))
+        for m in found:
+            m.live_in = 'Live'
+        return found
 
     def find_upcoming_matches(self):
         """

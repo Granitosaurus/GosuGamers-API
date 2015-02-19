@@ -27,28 +27,33 @@ class Match(Storage):
         self.team2_score = team2_score
 
         self.title = '{} {} vs {} {}'.format(team1, team1_bet, team2_bet, team2)
+        self.simple_title = '{} vs {}'.format(team1, team2)
 
     def _extract_game(self):
         game = ''.join(re.findall("net/(.*?)/", self.url))
         return game
 
-
-
     def get_streams(self):
         request = requests.get(self.url)
         tree = html.fromstring(request.content)
         streams = tree.xpath("//object[contains(@id, 'live_embed_player_flash')]/@data")
+        if not streams:
+            streams = tree.xpath("//div[@id='tab-content-streams']//iframe/@src")
         return streams
 
-    def __dict__(self):
+    def __dict__(self, get_streams=False):
         """Returns dictionary of object data for json storage"""
         data = {
             'game': self.game,
+            'title': self.title,
+            'simple_title': self.simple_title,
             'team 1': {
+                'name': self.team1,
                 'bet': self.team1_bet,
                 'score': self.team1_score
             },
             'team 2': {
+                'name': self.team2,
                 'bet': self.team2_bet,
                 'score': self.team2_score
             },
@@ -56,8 +61,10 @@ class Match(Storage):
             'tounament': self.tournament,
             'has_vods': self.has_vods,
             'match_id': self.match_id,
-            'url': self.url
+            'url': self.url,
         }
+        if get_streams:
+            data['streams'] = self.get_streams()
         return data
 
     def __str__(self):
