@@ -1,0 +1,873 @@
+{
+  "upcoming": [
+    [
+      {
+        "url": "http://www.gosugamers.net/dota2/tournaments/5769-major-all-stars-qualifiers/1507-west/5771-europe/matches/66796-team-empire-dota2-vs-4-anchors",
+        "team 1": {
+          "bet": "85%",
+          "name": "Team Empire DotA2",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "2h 47m",
+        "match_id": "66796",
+        "game": "dota2",
+        "simple_title": "Team Empire... vs 4 Anchors",
+        "team 2": {
+          "bet": "15%",
+          "name": "4 Anchors",
+          "score": ""
+        },
+        "title": "Team Empire... 85% vs 15% 4 Anchors"
+      },
+      {
+        "url": "http://www.gosugamers.net/dota2/tournaments/5606-jd-mlg-pro-league-1/1468-league/5607-europe-a/matches/64955-powerrangers-vs-alliance",
+        "team 1": {
+          "bet": "46%",
+          "name": "PowerRangers",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "3h 17m",
+        "match_id": "64955",
+        "game": "dota2",
+        "simple_title": "PowerRangers vs Alliance",
+        "team 2": {
+          "bet": "20%",
+          "name": "Alliance",
+          "score": ""
+        },
+        "title": "PowerRangers 46% vs 20% Alliance"
+      },
+      {
+        "url": "http://www.gosugamers.net/lol/tournaments/5583-2015-eu-lcs-spring/matches/64617-copenhagen-wolves-vs-roccat",
+        "team 1": {
+          "bet": "51%",
+          "name": "Copenhagen",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "3h 17m",
+        "match_id": "64617",
+        "game": "lol",
+        "simple_title": "Copenhagen... vs ROCCAT",
+        "team 2": {
+          "bet": "49%",
+          "name": "ROCCAT",
+          "score": ""
+        },
+        "title": "Copenhagen... 51% vs 49% ROCCAT"
+      },
+      {
+        "url": "http://www.gosugamers.net/dota2/tournaments/5542-dota-pit-league-season-3/1455-group-stage/5545-group-b/matches/66770-team-secret-vs-hellraisers-dota2",
+        "team 1": {
+          "bet": "84%",
+          "name": "Team Secret",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "3h 47m",
+        "match_id": "66770",
+        "game": "dota2",
+        "simple_title": "Team Secret vs Hellraisers...",
+        "team 2": {
+          "bet": "11%",
+          "name": "Hellraisers Dota2",
+          "score": ""
+        },
+        "title": "Team Secret 84% vs 11% Hellraisers..."
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5495-esea-season-18-eu-league-play/matches/63765-fnatic-vs-mousesports-cs",
+        "team 1": {
+          "bet": "93%",
+          "name": "fnatic",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "4h 17m",
+        "match_id": "63765",
+        "game": "counterstrike",
+        "simple_title": "fnatic vs mousesports.CS",
+        "team 2": {
+          "bet": "7%",
+          "name": "mousesports.CS",
+          "score": ""
+        },
+        "title": "fnatic 93% vs 7% mousesports.CS"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5794-european-division/matches/67296-virtus-pro-cs-vs-tsm-kinguin",
+        "team 1": {
+          "bet": "65%",
+          "name": "Virtus.Pro.CS",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "4h 17m",
+        "match_id": "67296",
+        "game": "counterstrike",
+        "simple_title": "Virtus.Pro.CS vs TSM Kinguin",
+        "team 2": {
+          "bet": "35%",
+          "name": "TSM Kinguin",
+          "score": ""
+        },
+        "title": "Virtus.Pro.CS 65% vs 35% TSM Kinguin"
+      },
+      {
+        "url": "http://www.gosugamers.net/heroesofthestorm/tournaments/5704-esl-heroes-major-league/1491-group-stage/5705-europe/matches/66010-wo-ist-kazooie-vs-fnatic-hots",
+        "team 1": {
+          "bet": "76%",
+          "name": "wo ist kazooie?",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "4h 17m",
+        "match_id": "66010",
+        "game": "heroesofthestorm",
+        "simple_title": "wo ist kazooie? vs Fnatic HotS",
+        "team 2": {
+          "bet": "24%",
+          "name": "Fnatic HotS",
+          "score": ""
+        },
+        "title": "wo ist kazooie? 76% vs 24% Fnatic HotS"
+      },
+      {
+        "url": "http://www.gosugamers.net/lol/tournaments/5583-2015-eu-lcs-spring/matches/64609-elements-vs-giants-gaming",
+        "team 1": {
+          "bet": "67%",
+          "name": "Elements",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "4h 17m",
+        "match_id": "64609",
+        "game": "lol",
+        "simple_title": "Elements vs Giants Gaming",
+        "team 2": {
+          "bet": "33%",
+          "name": "Giants Gaming",
+          "score": ""
+        },
+        "title": "Elements 67% vs 33% Giants Gaming"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5495-esea-season-18-eu-league-play/matches/63801-fnatic-vs-mousesports-cs",
+        "team 1": {
+          "bet": "81%",
+          "name": "fnatic",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "5h 17m",
+        "match_id": "63801",
+        "game": "counterstrike",
+        "simple_title": "fnatic vs mousesports.CS",
+        "team 2": {
+          "bet": "19%",
+          "name": "mousesports.CS",
+          "score": ""
+        },
+        "title": "fnatic 81% vs 19% mousesports.CS"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5794-european-division/matches/67295-titan-cs-vs-team-envyus",
+        "team 1": {
+          "bet": "37%",
+          "name": "Titan.CS",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "5h 17m",
+        "match_id": "67295",
+        "game": "counterstrike",
+        "simple_title": "Titan.CS vs Team EnVyUs",
+        "team 2": {
+          "bet": "63%",
+          "name": "Team EnVyUs",
+          "score": ""
+        },
+        "title": "Titan.CS 37% vs 63% Team EnVyUs"
+      },
+      {
+        "url": "http://www.gosugamers.net/dota2/tournaments/5542-dota-pit-league-season-3/1455-group-stage/5544-group-a/matches/66756-team-tinker-vs-asus-polar",
+        "team 1": {
+          "bet": "15%",
+          "name": "Team Tinker",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "5h 17m",
+        "match_id": "66756",
+        "game": "dota2",
+        "simple_title": "Team Tinker vs ASUS.Polar",
+        "team 2": {
+          "bet": "64%",
+          "name": "ASUS.Polar",
+          "score": ""
+        },
+        "title": "Team Tinker 15% vs 64% ASUS.Polar"
+      },
+      {
+        "url": "http://www.gosugamers.net/dota2/tournaments/5606-jd-mlg-pro-league-1/1468-league/5608-europe-b/matches/64930-moscow-five-vs-virtus-pro-dota2",
+        "team 1": {
+          "bet": "14%",
+          "name": "Moscow Five",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "5h 17m",
+        "match_id": "64930",
+        "game": "dota2",
+        "simple_title": "Moscow Five vs Virtus Pro-Dota2",
+        "team 2": {
+          "bet": "53%",
+          "name": "Virtus Pro-Dota2",
+          "score": ""
+        },
+        "title": "Moscow Five 14% vs 53% Virtus Pro-Dota2"
+      },
+      {
+        "url": "http://www.gosugamers.net/lol/tournaments/5583-2015-eu-lcs-spring/matches/64581-fnatic-lol-vs-sk-gaming-lol",
+        "team 1": {
+          "bet": "0%",
+          "name": "Fnatic LoL",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "5h 17m",
+        "match_id": "64581",
+        "game": "lol",
+        "simple_title": "Fnatic LoL vs SK Gaming - LoL",
+        "team 2": {
+          "bet": "100%",
+          "name": "SK Gaming - LoL",
+          "score": ""
+        },
+        "title": "Fnatic LoL 0% vs 100% SK Gaming - LoL"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5495-esea-season-18-eu-league-play/matches/63771-fnatic-vs-titan-cs",
+        "team 1": {
+          "bet": "88%",
+          "name": "fnatic",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "6h 17m",
+        "match_id": "63771",
+        "game": "counterstrike",
+        "simple_title": "fnatic vs Titan.CS",
+        "team 2": {
+          "bet": "12%",
+          "name": "Titan.CS",
+          "score": ""
+        },
+        "title": "fnatic 88% vs 12% Titan.CS"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5794-european-division/matches/67291-virtus-pro-cs-vs-ninjas-in-pyjamas",
+        "team 1": {
+          "bet": "54%",
+          "name": "Virtus.Pro.CS",
+          "score": ""
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "6h 17m",
+        "match_id": "67291",
+        "game": "counterstrike",
+        "simple_title": "Virtus.Pro.CS vs Ninjas in...",
+        "team 2": {
+          "bet": "46%",
+          "name": "Ninjas in Pyjamas",
+          "score": ""
+        },
+        "title": "Virtus.Pro.CS 54% vs 46% Ninjas in..."
+      }
+    ]
+  ],
+  "recent": [
+    [
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5450-cevo-professional-season-6-regular-season/matches/62423-ascendancy-vs-cloud9-cs",
+        "team 1": {
+          "bet": "0%",
+          "name": "Ascendancy",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "62423",
+        "game": "counterstrike",
+        "simple_title": "Ascendancy vs Cloud9.CS",
+        "team 2": {
+          "bet": "0%",
+          "name": "Cloud9.CS",
+          "score": "1"
+        },
+        "title": "Ascendancy 0% vs 0% Cloud9.CS"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5450-cevo-professional-season-6-regular-season/matches/62416-the-stream-team-vs-cloud9-cs",
+        "team 1": {
+          "bet": "6%",
+          "name": "The Stream Team",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "62416",
+        "game": "counterstrike",
+        "simple_title": "The Stream Team vs Cloud9.CS",
+        "team 2": {
+          "bet": "94%",
+          "name": "Cloud9.CS",
+          "score": "1"
+        },
+        "title": "The Stream Team 6% vs 94% Cloud9.CS"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5524-esea-season-18-na-league-play/matches/64065-elevate-vs-denial-esports",
+        "team 1": {
+          "bet": "42%",
+          "name": "eLevate",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "64065",
+        "game": "counterstrike",
+        "simple_title": "eLevate vs Denial eSports",
+        "team 2": {
+          "bet": "58%",
+          "name": "Denial eSports",
+          "score": "0"
+        },
+        "title": "eLevate 42% vs 58% Denial eSports"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5795-north-american-division/matches/67142-counter-logic-gaming-cs-vs-sapphirekelownadotcom",
+        "team 1": {
+          "bet": "56%",
+          "name": "Counter",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "67142",
+        "game": "counterstrike",
+        "simple_title": "Counter... vs SapphireKelow...",
+        "team 2": {
+          "bet": "44%",
+          "name": "SapphireKelownaDotCom",
+          "score": "1"
+        },
+        "title": "Counter... 56% vs 44% SapphireKelow..."
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5524-esea-season-18-na-league-play/matches/64051-area-51-gaming-vs-cloud9-cs",
+        "team 1": {
+          "bet": "0%",
+          "name": "Area 51 Gaming",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "64051",
+        "game": "counterstrike",
+        "simple_title": "Area 51 Gaming vs Cloud9.CS",
+        "team 2": {
+          "bet": "100%",
+          "name": "Cloud9.CS",
+          "score": "1"
+        },
+        "title": "Area 51 Gaming 0% vs 100% Cloud9.CS"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5795-north-american-division/matches/67133-team-liquid-cs-vs-elevate",
+        "team 1": {
+          "bet": "49%",
+          "name": "Team Liquid.CS",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "67133",
+        "game": "counterstrike",
+        "simple_title": "Team Liquid.CS vs eLevate",
+        "team 2": {
+          "bet": "51%",
+          "name": "eLevate",
+          "score": "1"
+        },
+        "title": "Team Liquid.CS 49% vs 51% eLevate"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5524-esea-season-18-na-league-play/matches/64021-team-liquid-cs-vs-elevate",
+        "team 1": {
+          "bet": "57%",
+          "name": "Team Liquid.CS",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "64021",
+        "game": "counterstrike",
+        "simple_title": "Team Liquid.CS vs eLevate",
+        "team 2": {
+          "bet": "43%",
+          "name": "eLevate",
+          "score": "0"
+        },
+        "title": "Team Liquid.CS 57% vs 43% eLevate"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5795-north-american-division/matches/67143-cloud9-cs-vs-mythic",
+        "team 1": {
+          "bet": "86%",
+          "name": "Cloud9.CS",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "67143",
+        "game": "counterstrike",
+        "simple_title": "Cloud9.CS vs Mythic",
+        "team 2": {
+          "bet": "14%",
+          "name": "Mythic",
+          "score": "0"
+        },
+        "title": "Cloud9.CS 86% vs 14% Mythic"
+      },
+      {
+        "url": "http://www.gosugamers.net/dota2/tournaments/5722-canada-cup-4/1496-group-stage/5726-group-c/matches/66826-leviathan-vs-thundercats",
+        "team 1": {
+          "bet": "48%",
+          "name": "Leviathan",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "66826",
+        "game": "dota2",
+        "simple_title": "Leviathan vs Thundercats!",
+        "team 2": {
+          "bet": "52%",
+          "name": "Thundercats!",
+          "score": "0"
+        },
+        "title": "Leviathan 48% vs 52% Thundercats!"
+      },
+      {
+        "url": "http://www.gosugamers.net/dota2/tournaments/5722-canada-cup-4/1496-group-stage/5726-group-c/matches/66824-leviathan-vs-ape-zone",
+        "team 1": {
+          "bet": "66%",
+          "name": "Leviathan",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "66824",
+        "game": "dota2",
+        "simple_title": "Leviathan vs Ape Zone",
+        "team 2": {
+          "bet": "34%",
+          "name": "Ape Zone",
+          "score": "0"
+        },
+        "title": "Leviathan 66% vs 34% Ape Zone"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5450-cevo-professional-season-6-regular-season/matches/62413-mythic-b-vs-denial-esports-b",
+        "team 1": {
+          "bet": "0%",
+          "name": "Mythic: B",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "62413",
+        "game": "counterstrike",
+        "simple_title": "Mythic: B vs Denial...",
+        "team 2": {
+          "bet": "0%",
+          "name": "Denial eSports",
+          "score": "0"
+        },
+        "title": "Mythic: B 0% vs 0% Denial..."
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5815-insomnia-54-qualifier/1521-group-stage/5816-group-a/matches/67330-volgare-vs-publiclir-se",
+        "team 1": {
+          "bet": "26%",
+          "name": "VOLGARE",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "67330",
+        "game": "counterstrike",
+        "simple_title": "VOLGARE vs Publiclir.se",
+        "team 2": {
+          "bet": "74%",
+          "name": "Publiclir.se",
+          "score": "1"
+        },
+        "title": "VOLGARE 26% vs 74% Publiclir.se"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5815-insomnia-54-qualifier/1521-group-stage/5816-group-a/matches/67331-x6tence-vs-wizards",
+        "team 1": {
+          "bet": "55%",
+          "name": "x6tence",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "67331",
+        "game": "counterstrike",
+        "simple_title": "x6tence vs Wizards",
+        "team 2": {
+          "bet": "45%",
+          "name": "Wizards",
+          "score": "0"
+        },
+        "title": "x6tence 55% vs 45% Wizards"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5495-esea-season-18-eu-league-play/matches/63775-team-property-cs-vs-titan-cs",
+        "team 1": {
+          "bet": "30%",
+          "name": "Team Property.CS",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "63775",
+        "game": "counterstrike",
+        "simple_title": "Team Property.CS vs Titan.CS",
+        "team 2": {
+          "bet": "70%",
+          "name": "Titan.CS",
+          "score": "0"
+        },
+        "title": "Team Property.CS 30% vs 70% Titan.CS"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5495-esea-season-18-eu-league-play/matches/63770-team-property-cs-vs-fnatic",
+        "team 1": {
+          "bet": "10%",
+          "name": "Team Property.CS",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "63770",
+        "game": "counterstrike",
+        "simple_title": "Team Property.CS vs fnatic",
+        "team 2": {
+          "bet": "90%",
+          "name": "fnatic",
+          "score": "1"
+        },
+        "title": "Team Property.CS 10% vs 90% fnatic"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5794-european-division/matches/67297-natus-vincere-vs-lgb-esports",
+        "team 1": {
+          "bet": "74%",
+          "name": "Natus Vincere",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "67297",
+        "game": "counterstrike",
+        "simple_title": "Natus Vincere vs LGB eSports",
+        "team 2": {
+          "bet": "26%",
+          "name": "LGB eSports",
+          "score": "0"
+        },
+        "title": "Natus Vincere 74% vs 26% LGB eSports"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5815-insomnia-54-qualifier/1521-group-stage/5816-group-a/matches/67334-volgare-vs-x6tence",
+        "team 1": {
+          "bet": "42%",
+          "name": "VOLGARE",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "67334",
+        "game": "counterstrike",
+        "simple_title": "VOLGARE vs x6tence",
+        "team 2": {
+          "bet": "58%",
+          "name": "x6tence",
+          "score": "1"
+        },
+        "title": "VOLGARE 42% vs 58% x6tence"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5815-insomnia-54-qualifier/1521-group-stage/5816-group-a/matches/67335-wizards-vs-publiclir-se",
+        "team 1": {
+          "bet": "39%",
+          "name": "Wizards",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "67335",
+        "game": "counterstrike",
+        "simple_title": "Wizards vs Publiclir.se",
+        "team 2": {
+          "bet": "61%",
+          "name": "Publiclir.se",
+          "score": "1"
+        },
+        "title": "Wizards 39% vs 61% Publiclir.se"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5794-european-division/matches/67281-ninjas-in-pyjamas-vs-titan-cs",
+        "team 1": {
+          "bet": "52%",
+          "name": "Ninjas in Pyjamas",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "67281",
+        "game": "counterstrike",
+        "simple_title": "Ninjas in... vs Titan.CS",
+        "team 2": {
+          "bet": "48%",
+          "name": "Titan.CS",
+          "score": "0"
+        },
+        "title": "Ninjas in... 52% vs 48% Titan.CS"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5495-esea-season-18-eu-league-play/matches/63792-gamers2-vs-penta-sports",
+        "team 1": {
+          "bet": "35%",
+          "name": "Gamers2",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "63792",
+        "game": "counterstrike",
+        "simple_title": "Gamers2 vs PENTA Sports",
+        "team 2": {
+          "bet": "65%",
+          "name": "PENTA Sports",
+          "score": "1"
+        },
+        "title": "Gamers2 35% vs 65% PENTA Sports"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5495-esea-season-18-eu-league-play/matches/63795-team-property-cs-vs-cph-wolves",
+        "team 1": {
+          "bet": "69%",
+          "name": "Team Property.CS",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "63795",
+        "game": "counterstrike",
+        "simple_title": "Team Property.CS vs CPH Wolves",
+        "team 2": {
+          "bet": "31%",
+          "name": "CPH Wolves",
+          "score": "0"
+        },
+        "title": "Team Property.CS 69% vs 31% CPH Wolves"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5744-rgn-intercontinental-open-europe/matches/66513-key-preisvergleich-de-vs-skillz-lv",
+        "team 1": {
+          "bet": "32%",
+          "name": "Key-Preisvergleich.de",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "66513",
+        "game": "counterstrike",
+        "simple_title": "Key-Preisverg... vs skillz.lv",
+        "team 2": {
+          "bet": "68%",
+          "name": "skillz.lv",
+          "score": "0"
+        },
+        "title": "Key-Preisverg... 32% vs 68% skillz.lv"
+      },
+      {
+        "url": "http://www.gosugamers.net/dota2/tournaments/5606-jd-mlg-pro-league-1/1468-league/5607-europe-a/matches/64969-london-conspiracy-dota2-vs-hellraisers-dota2",
+        "team 1": {
+          "bet": "16%",
+          "name": "London Conspiracy Dota2",
+          "score": "0"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "64969",
+        "game": "dota2",
+        "simple_title": "London... vs Hellraisers...",
+        "team 2": {
+          "bet": "59%",
+          "name": "Hellraisers Dota2",
+          "score": "2"
+        },
+        "title": "London... 16% vs 59% Hellraisers..."
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5793-faceit-league-2015/1512-round-robin/5794-european-division/matches/67274-fnatic-vs-tsm-kinguin",
+        "team 1": {
+          "bet": "83%",
+          "name": "fnatic",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "67274",
+        "game": "counterstrike",
+        "simple_title": "fnatic vs TSM Kinguin",
+        "team 2": {
+          "bet": "17%",
+          "name": "TSM Kinguin",
+          "score": "0"
+        },
+        "title": "fnatic 83% vs 17% TSM Kinguin"
+      },
+      {
+        "url": "http://www.gosugamers.net/counterstrike/tournaments/5495-esea-season-18-eu-league-play/matches/63785-team-property-cs-vs-virtus-pro-cs",
+        "team 1": {
+          "bet": "13%",
+          "name": "Team Property.CS",
+          "score": "1"
+        },
+        "tounament": "http://www.gosugamers.net/",
+        "streams": [],
+        "has_vods": false,
+        "live in": "",
+        "match_id": "63785",
+        "game": "counterstrike",
+        "simple_title": "Team Property.CS vs Virtus.Pro.CS",
+        "team 2": {
+          "bet": "87%",
+          "name": "Virtus.Pro.CS",
+          "score": "0"
+        },
+        "title": "Team Property.CS 13% vs 87% Virtus.Pro.CS"
+      }
+    ]
+  ],
+  "live": [
+    {
+      "url": "http://www.gosugamers.net/dota2/tournaments/5606-jd-mlg-pro-league-1/1468-league/5610-asia/matches/64843-signature-trust-vs-arcanysgaming",
+      "team 1": {
+        "bet": "25%",
+        "name": "Signature.TrusT",
+        "score": ""
+      },
+      "tounament": "http://www.gosugamers.net/",
+      "streams": ["http://www.majorleaguegaming.com/player/embed/joinDOTA?autoplay=0"],
+      "has_vods": false,
+      "live in": "Live",
+      "match_id": "64843",
+      "game": "dota2",
+      "simple_title": "Signature.TrusT vs ArcanysGaming",
+      "team 2": {
+        "bet": "33%",
+        "name": "ArcanysGaming",
+        "score": ""
+      },
+      "title": "Signature.TrusT 25% vs 33% ArcanysGaming"
+    }
+  ]
+}
