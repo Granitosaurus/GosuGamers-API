@@ -1,7 +1,6 @@
 """
 Saves all matches to json file
 """
-from datetime import datetime
 import json
 from gosu_gamers import gg_match
 
@@ -16,8 +15,7 @@ def all_games_to_json(get_streams=True):
                   'upcoming': [[m.__dict__(get_streams=get_streams) for m in upcoming]],
                   'recent': [[m.__dict__(get_streams=get_streams) for m in recent]]}
 
-    date = datetime.now().strftime('%Y%m%d%H%M%S')
-    filename = 'all_matches_{}.json'.format(date)
+    filename = 'all_matches.json'
     with open(filename, 'w') as json_file:
         print('Saving to "{}"'.format(filename))
         json_file.write(json.dumps(games_dict))
