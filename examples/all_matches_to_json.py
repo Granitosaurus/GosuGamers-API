@@ -12,8 +12,8 @@ def all_games_to_json(get_streams=True):
     upcoming = ggms.find_upcoming_matches()
     recent = ggms.find_recent_matches()
     games_dict = {'live': [m.__dict__(get_streams=get_streams) for m in live],
-                  'upcoming': [[m.__dict__(get_streams=get_streams) for m in upcoming]],
-                  'recent': [[m.__dict__(get_streams=get_streams) for m in recent]]}
+                  'upcoming': [m.__dict__(get_streams=get_streams) for m in upcoming],
+                  'recent': [m.__dict__(get_streams=get_streams) for m in recent]}
 
     filename = 'all_matches.json'
     with open(filename, 'w') as json_file:
