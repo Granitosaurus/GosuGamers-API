@@ -18,8 +18,7 @@ class _TeamScraper:
     url = ''
     game = ''
 
-
-    def get_teams(self):
+    def get_teams(self, fill_teams=False):
         """Fills up self.teams with team object with rank, name, country, score and rank_change if possible"""
         request = requests.get(self.url)
         tree = html.fromstring(request.content)
@@ -27,80 +26,21 @@ class _TeamScraper:
         total_pages = total_pages[0] if total_pages else 0
         total_pages = int(total_pages)
         for page in range(1, total_pages+1):
-            request = requests.get('{}{}{}'.format(self.url, '?page=', page))
+            request = requests.get('{}?page={}'.format(self.url, page))
             tree = html.fromstring(request.content)
             table_rows = tree.xpath("//tr[contains(@class, 'ranking-link')]")
             for tr in table_rows:
+                team_id = ''.join(tr.xpath("./@data-id"))
+                if fill_teams:
+                    yield Team(team_id=team_id, fill_details=True)
+                    continue
                 rank = ''.join(tr.xpath(".//td[@class='rank']/div/text()"))
                 country = ''.join(tr.xpath(".//span[contains(@class, 'flag')]/@title"))
                 name = ''.join(tr.xpath(".//h4/span/span/text()"))
                 score = ''.join(tr.xpath(".//td[@class='numbers']/text()"))
                 rank_change = ''.join(tr.xpath(".//td[@class='rank-change']/i/@title"))
-                team_id = ''.join(tr.xpath("./@data-id"))
-                yield Team(name, country, rank, score, rank_change, team_id, game=self.game)
-    # def find_team(self, name=None, country=None, rank_exactly=None, score_exactly=None, rank_change=None, team_id=None,
-    #               score_lower=None, score_higher=None, partial_name=None, rank_lower=None, rank_higher=None):
-    #     """
-    #     Finds a team by provided keyword attributes, returns a list of teams matching the filter settings
-    #     Keyword Arguments:
-    #     name - exact team name (case insensitive)
-    #     country - team origin country
-    #     rank_exactly - rank exactly
-    #     rank_lower - only teams with lower rank than provided
-    #     rank_higher - only teams with higher rank than provided
-    #     rank_change - the state of ank change
-    #     score_exactly - score exactly
-    #     score_lower - only teams with lower score than provided
-    #     score_higher - only teams with higher score than provided
-    #     team_id = exact team id
-    #     partial_name - part of name
-    #     """
-    #     if not self.teams:
-    #         raise AttributeError("Object team list is empty")
-    #     results = []
-    #     for team in self.teams:
-    #         all_args = []
-    #         if name is not None:
-    #             all_args.append(name.lower() == team.name.lower())
-    #         if country is not None:
-    #             all_args.append(country.lower() == team.country.lower())
-    #         if rank_exactly is not None:
-    #             all_args.append(rank_exactly == team.rank)
-    #         if rank_higher is not None:
-    #             if rank_higher == '':
-    #                 all_args.append(rank_higher == team.rank)
-    #             else:
-    #                 all_args.append(int(rank_higher) > int(team.rank))
-    #         if rank_lower is not None:
-    #             if rank_lower == '':
-    #                 all_args.append(rank_lower == team.rank)
-    #             else:
-    #                 all_args.append(int(rank_lower) < int(team.rank))
-    #         if score_exactly is not None:
-    #             all_args.append(score_exactly == team.score)
-    #         if rank_change is not None:
-    #             all_args.append(rank_change == team.rank_change)
-    #         if team_id is not None:
-    #             all_args.append(team_id == team.team_id)
-    #         if score_higher is not None:
-    #             if score_higher == '':
-    #                 all_args.append(score_higher == team.score)
-    #             else:
-    #                 all_args.append(int(score_higher) < int(team.score.replace(',', '')))
-    #         if score_lower is not None:
-    #             if score_lower == '':
-    #                 all_args.append(score_lower == team.score)
-    #             else:
-    #                 all_args.append(int(score_lower) > int(team.score.replace(',', '')))
-    #         if partial_name is not None:
-    #             if partial_name == '':
-    #                 all_args.append(partial_name == team.name)
-    #             else:
-    #                 all_args.append(partial_name.lower() in team.name.lower())
-    #
-    #         if all(all_args):
-    #             results.append(team)
-    #     return results
+                yield Team(name=name, country=country, rank=rank, score=score,
+                           rank_change=rank_change, team_id=team_id, game=self.game)
 
 
 class CsGoTeamScraper(_TeamScraper):
@@ -150,4 +90,4 @@ if __name__ == '__main__':
     # example_team.get_all_details()
     # print(example_team)
 
-    print(get_scraper('dota3'))
+    print(get_scraper('dota2'))

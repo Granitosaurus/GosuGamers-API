@@ -3,6 +3,9 @@ import requests
 from lxml import html
 from gosu_gamers import meta
 
+"""
+This module is for fixing mangled team names
+"""
 
 def update_teamsfile(game):
     teams = []
@@ -28,7 +31,7 @@ def stored_team_names(game):
         team_file_data = pkg_resources.resource_string('gosu_gamers', 'data/knownteams_{}.txt'.format(game))
         known_teams = team_file_data.decode().splitlines()
     except FileNotFoundError:
-        print('knownteams file in data folder not found')
+        print('knownteams file in data folder for game {} not found'.format(game))
         return None
     return known_teams
 
@@ -40,6 +43,8 @@ def fix_team_name(game, team_name):
     this function will fix it to Evil Geniuses.
     note: requires knownteams_<game_name>.txt to exist
     """
+    if '...' not in team_name:
+        return team_name
     team_name_fixed = team_name.replace('...', '').strip()
     known_teams = stored_team_names(game) or team_name  # if failed
 

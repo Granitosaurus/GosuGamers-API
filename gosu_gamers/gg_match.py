@@ -2,6 +2,7 @@
 module for the retrieval of matches on http://www.gosugamers.com
 """
 from urllib.parse import urljoin
+import re
 
 import requests
 from lxml import html
@@ -84,7 +85,7 @@ class MatchScraper:
             team2_bet = ''.join(match.xpath('.//span[contains(@class,"bet2")]//text()')).strip('() \n')
 
             match_url = ''.join(match.xpath('.//a[contains(@class,"match")]/@href')).strip()
-            match_id = match_url.rsplit('/', 1)[-1].split('-')[0] if match_url else 'not found'
+            match_id = re.findall('/matches/(\d+)', match_url)[0] if re.findall('/matches/(\d+)', match_url) else ''
             match_url = urljoin(self.domain, match_url)
             live_in = ''.join(match.xpath('.//span[contains(@class,"live-in")]/text()')).strip()
 

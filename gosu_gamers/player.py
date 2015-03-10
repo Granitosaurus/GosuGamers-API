@@ -1,24 +1,25 @@
 """
 Module for gosugamers.net player data storage and manipulation
 """
-import json
+from gosu_gamers.storage import Storage
 
 __author__ = 'Bernard @ Bernardas.Alisauskas@gmail.com'
 
 
-class Player:
+class Player(Storage):
     """Storage class for Player"""
-    #TODO add detailed data for a player
-    def __init__(self, nickname='', fullname='', photo_url='', famous_heroes='', url=''):
+    def __init__(self, url='', nickname='', fullname='', photo_url='', famous_heroes=''):
         self.nickname = nickname
         self.fullname = fullname
         self.photo_url = photo_url
         self.famous_heroes = famous_heroes
         self.url = url
 
-    def get_json(self):
-        """Returns json"""
-        return json.loads(self.__dict__())
+    def __bool__(self):
+        if self.url:
+            return True
+        else:
+            return False
 
     def __dict__(self):
         """Returns unordered dict of Player data"""
@@ -34,7 +35,5 @@ class Player:
         return data
 
     def __str__(self):
-        return '{nickname} {fullname} {photo} {famous_heroes} {url}'\
-            .format(nickname=self.nickname, fullname=self.fullname, photo=self.photo_url,
-                    famous_heroes=self.famous_heroes, url=self.url)
+        return repr(self.__dict__())
 
