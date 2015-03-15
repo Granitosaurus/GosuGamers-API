@@ -1,0 +1,20 @@
+*.py[co]
+*.diff
+*.patch
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+
+# bin
+var
+sdist
+develop-eggs
+.installed.cfg
+build
+.idea
+.settings
+
