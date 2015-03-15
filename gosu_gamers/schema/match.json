@@ -1,0 +1,53 @@
+{
+  "match": {
+    "parameters": {
+      "tournament": {
+        "default": ""
+      },
+      "live_in": {
+        "default": ""
+      },
+      "has_vods": {
+        "default": ""
+      },
+      "game": {
+        "default": ""
+      },
+      "team1": {
+        "default": ""
+      },
+      "team1_url": {
+        "default": ""
+      },
+      "team1_bet": {
+        "default": ""
+      },
+      "team1_score": {
+        "default": ""
+      },
+      "team2": {
+        "default": ""
+      },
+      "team2_url": {
+        "default": ""
+      },
+      "team2_score": {
+        "default": ""
+      },
+      "team2_bet": {
+        "default": ""
+      },
+      "draw_bet": {
+        "default": ""
+      },
+      "title": {
+        "default": "",
+        "requires_connection": false
+      },
+      "simple_title": {
+        "default": "",
+        "requires_connection": false
+      }
+    }
+  }
+}

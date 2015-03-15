@@ -24,6 +24,9 @@ class MatchScraper:
     domain = 'http://www.gosugamers.net/'
     game = None
 
+    def __init__(self, fill=False):
+        self.fill = fill
+
     def get_tree(self):
         """
         Downloads page and makes a html tree
@@ -79,26 +82,24 @@ class MatchScraper:
         :param match_trees: list of html trees (usually table rows)
         """
         for match in match_trees:
-            team1 = ''.join(match.xpath('.//span[contains(@class,"opp1")]//text()')).strip()
-            team2 = ''.join(match.xpath('.//span[contains(@class,"opp2")]//text()')).strip()
-            team1_bet = ''.join(match.xpath('.//span[contains(@class,"bet1")]//text()')).strip('() \n')
-            team2_bet = ''.join(match.xpath('.//span[contains(@class,"bet2")]//text()')).strip('() \n')
-
+            kwargs = {'team1': ''.join(match.xpath('.//span[contains(@class,"opp1")]//text()')).strip(),
+                      'team2': ''.join(match.xpath('.//span[contains(@class,"opp2")]//text()')).strip(),
+                      'team1_bet': ''.join(match.xpath('.//span[contains(@class,"bet1")]//text()')).strip('() \n'),
+                      'team2_bet': ''.join(match.xpath('.//span[contains(@class,"bet2")]//text()')).strip('() \n'),
+                      'live_in': ''.join(match.xpath('.//span[contains(@class,"live-in")]/text()')).strip(),
+            }
             match_url = ''.join(match.xpath('.//a[contains(@class,"match")]/@href')).strip()
             match_id = re.findall('/matches/(\d+)', match_url)[0] if re.findall('/matches/(\d+)', match_url) else ''
             match_url = urljoin(self.domain, match_url)
-            live_in = ''.join(match.xpath('.//span[contains(@class,"live-in")]/text()')).strip()
 
             score = match.xpath('.//span[contains(@class,"score-wrap")]//span[contains(@class, "score")]/text()')
-            team1_score = score[0] if score else ''
-            team2_score = score[1] if len(score) > 1 else ''
+            kwargs['team1_score'] = score[0] if score else ''
+            kwargs['team2_score'] = score[1] if len(score) > 1 else ''
 
             tournament = ''.join(match.xpath('.//a[contains(@class,"tournament")]/@href')).strip()
-            tournament = urljoin(self.domain, tournament)
-
-            has_vods = bool(match.xpath('.//span[contains(@class,"vod")]/img'))
-            yield Match(self.game, team1, team1_score, team1_bet, team2, team2_score, team2_bet, live_in, tournament,
-                        has_vods, match_id, match_url)
+            kwargs['tournament'] = urljoin(self.domain, tournament)
+            kwargs['has_vods'] = bool(match.xpath('.//span[contains(@class,"vod")]/img'))
+            yield Match(match_id=match_id, url=match_url, fill=self.fill, **kwargs)
 
 
 class CsGoMatchScraper(MatchScraper):
@@ -127,7 +128,8 @@ class HotsMatchScraper(MatchScraper):
 
 
 if __name__ == '__main__':
-    pass
-    ms = Dota2MatchScraper()
+    ms = Dota2MatchScraper(fill=True)
     for game in ms.find_recent_matches():
-        print(game.team1_bet)
+        # game.fill_details()
+        print(game)
+        # print(game.team1_bet)

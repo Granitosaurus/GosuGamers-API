@@ -1,0 +1,50 @@
+{
+  "team": {
+    "parameters": {
+      "name": {
+        "default": ""
+      },
+      "game": {
+        "default": ""
+      },
+      "rating": {
+        "default": ""
+      },
+      "rank": {
+        "default": ""
+      },
+      "region_rank": {
+        "default": ""
+      },
+      "country": {
+        "default": ""
+      },
+      "social": {
+        "default": ""
+      },
+      "icon": {
+        "default": ""
+      },
+      "players": {
+        "default": []
+      },
+      "manager": {
+        "default": {}
+      },
+      "upcoming_matches": {
+        "default": []
+      },
+      "rank_change": {
+        "default": ""
+      },
+      "match_history_url": {
+        "default": "",
+        "requires_connection": false
+      },
+      "player_history_url": {
+        "default": "",
+        "requires_connection": false
+      }
+    }
+  }
+}

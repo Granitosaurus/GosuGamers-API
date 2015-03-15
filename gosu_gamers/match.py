@@ -11,62 +11,34 @@ from gosu_gamers.utils.processors import first
 
 class Match(Storage):
     """Match class for storing match data"""
-    def __init__(self, match_id='', url='', **kwargs):
+    schema_name = 'match'
+
+    def __init__(self, match_id='', url='', fill=False, **kwargs):
+        super().__init__()
         self.match_id = match_id or kwargs.get('match_id', '')
         self.url = url or kwargs.get('url', '')
-
         if not self.match_id and not self.url:
             raise NotImplementedError('Match object creation requires "url" or "match_id"')
         if not self.url:
             self.url = self.get_url()
         if not self.match_id:
             self.match_id = self.get_match_id()
+        self.body = ''
+        self.tree = html.HtmlElement()
+        for param, value in self.known_params.items():
+            setattr(self, param, kwargs.get(param[0], value['default']))
 
         self.body = ''
         self.tree = html.HtmlElement()
-
-        self.tournament = kwargs.get('tournament', '')
-        self.live_in = kwargs.get('live_in', '')
-        self.tournament = kwargs.get('tournament', '')
-        self.has_vods = kwargs.get('has_vods', '')
-        self.game = kwargs.get('game', '') or self.get_game()
-        self.team1 = fix_team_name(self.game, kwargs.get('team1', ''))
-        self.team1_url = kwargs.get('team1_url', '')
-        self.team1_bet = kwargs.get('team1_bet', '')
-        self.team1_score = kwargs.get('team1_score', '')
-        self.team2 = fix_team_name(self.game, kwargs.get('team2', ''))
-        self.team2_url = kwargs.get('team2_url', '')
-        self.team2_bet = kwargs.get('team2_bet', '')
-        self.team2_score = kwargs.get('team2_score', '')
-
-        self.title = self.get_title()
-        self.simple_title = self.get_simple_title()
+        if fill:
+            self.connect()
+            self.fill_details()
 
     def connect(self):
         """Connects to the url to retrieve the html tree if it's not there"""
         if not len(self.tree):
             self.body = requests.get(self.url).content
             self.tree = html.fromstring(self.body)
-
-    def fill_details(self, override_all=False):
-        check = lambda element: (not element) or override_all
-        if check(self.game):
-            self.game = self.get_game()
-        if check(self.tournament):
-            self.tournament = self.get_tournament()
-        if check(self.title):
-            self.title = self.get_title()
-        if check(self.simple_title):
-            self.simple_title = self.get_simple_title()
-        if check(self.team1):
-            self.team1 = self.get_team1()
-        if check(self.team1_url):
-            self.team1 = self.get_team1_url()
-        if check(self.team2):
-            self.team1 = self.get_team2()
-        if check(self.team2_url):
-            self.team1 = self.get_team2_url()
-        # if check()
 
     def get_team1(self):
         self.connect()
@@ -84,19 +56,46 @@ class Match(Storage):
         self.connect()
         return first(self.tree.xpath("//div[contains(@class, 'opponent2')]//a/@href"))
 
+    def get_team1_bet(self):
+        return ''
+
+    def get_team2_bet(self):
+        return ''
+
+    def get_team1_score(self):
+        self.connect()
+        return first(self.tree.xpath("//span[contains(@class, 'results')]/span[1]/text()"))
+
+    def get_team2_score(self):
+        self.connect()
+        return first(self.tree.xpath("//span[contains(@class, 'results')]/span[2]/text()"))
+
+    def get_draw_bet(self):
+        return ''
+
+    def get_has_vods(self):
+        return ''
+
     def get_url(self):
         return "http://www.gosugamers.net/tournaments/-/matches/{}-vs-".format(self.match_id)
 
     def get_title(self):
-        return '{} {} vs {} {}'.format(self.team1, self.team1_bet, self.team2_bet, self.team2)
+        if all((self.team1, self.team2)):
+            if self.team1_bet and self.team2_bet:
+                return '{} {} vs {} {}'.format(self.team1, self.team1_bet, self.team2_bet, self.team2)
+            else:
+                '{} vs {}'.format(self.team1, self.team2)
+        return ''
 
     def get_simple_title(self):
-        return '{} vs {}'.format(self.team1, self.team2)
+        return '{} vs {}'.format(self.team1, self.team2) if (self.team1 and self.team2) else ''
 
     def get_tournament(self):
         tournament_id = re.findall('/tournaments/(\d+)', self.url)
-        url = 'http://www.gosugamers.net/tournaments/{}--'.format(tournament_id)
-        return url
+        if tournament_id:
+            url = 'http://www.gosugamers.net/tournaments/{}--'.format(tournament_id[0])
+            return url
+        return ''
 
     def get_game(self):
         game = ''.join(re.findall("net/(.*?)/", self.url))
@@ -118,6 +117,9 @@ class Match(Storage):
         if not streams:
             streams = self.tree.xpath("//div[@id='tab-content-streams']//iframe/@src")
         return streams
+
+    def get_live_in(self):
+        return ''
 
     def __dict__(self, get_streams=False):
         """Returns dictionary of object data for json storage"""
@@ -149,6 +151,11 @@ class Match(Storage):
         return repr(self.__dict__())
 
 if __name__ == '__main__':
-    m = Match(url='http://www.gosugamers.net/tournaments/5606-/matches/64842-vs-')
-    m.get_match_id()
+    m = Match(url='http://www.gosugamers.net/dota2/tournaments/5971-starladder-season-12/1576-phase-1-china/5980-group-a/matches/69094-invictus-gaming-vs-lgd')
+    print(m)
+    print(m.get_team1())
+    print(m.get_team1_bet())
+    print(m.get_team2())
+    print(m.get_team2_bet())
+    m.fill_details()
     print(m)

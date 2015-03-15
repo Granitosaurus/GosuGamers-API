@@ -1,5 +1,6 @@
 import json
 from urllib.parse import quote, urljoin
+from gosu_gamers.match import Match
 from lxml import html
 import re
 import requests
@@ -13,37 +14,22 @@ __author__ = 'Bernard @ Bernardas.Alisauskas@gmail.com'
 
 class Team(Storage):
     """Storage class for team data"""
+    # Known parameters tuple (attr_name, attr_default)
+    schema_name = 'team'
 
-    def __init__(self, team_id='', url='', fill_details=False, **kwargs):
+    def __init__(self, team_id='', url='', fill=False, **kwargs):
+        super().__init__()
         self.team_id = team_id or kwargs.get('team_id', '')
         self.url = url or kwargs.get('url', '')
         if not self.team_id and not self.url:
             raise NotImplementedError('Team object creation requires "team_id" or "url" fields')
-
-        if not self.url:
-            self.url = self.get_url()
-        if not self.team_id:
-            self.team_id = self.get_team_id()
-
+        self.url = self.get_url() if not self.url else self.url
+        self.team_id = self.get_team_id() if not self.team_id else self.team_id
+        for param, value in self.known_params.items():
+            setattr(self, param, kwargs.get(param[0], value['default']))
         self.body = ''
         self.tree = html.HtmlElement()
-
-        self.rank = kwargs.get('rank', '')
-        self.region_rank = kwargs.get('region_rank', '')
-        self.country = kwargs.get('country', '')
-        self.name = kwargs.get('name', '')
-        self.rating = kwargs.get('score', '')
-        self.rank_change = kwargs.get('rank_change', '')
-        self.game = kwargs.get('game', '')
-        self.players = kwargs.get('players', [])
-        self.manager = kwargs.get('manager', Player())
-        self.social = kwargs.get('social', '')
-        self.icon = kwargs.get('icon', '')
-
-        self.match_history_url = urljoin(self.url, 'matches')
-        self.player_history_url = urljoin(self.url, 'player-history')
-
-        if fill_details:
+        if fill:
             self.connect()
             self.fill_details()
 
@@ -51,30 +37,6 @@ class Team(Storage):
         """Makes url to the team's page from team_id and team_name"""
         # team_name = quote(self.name)
         return 'http://www.gosugamers.net/teams/{}-'.format(self.team_id)
-
-    def fill_details(self, override_all=False):
-        """Fills up details if Team object has an ID does not fill up self.rank_change"""
-        check = lambda element: (not element) or override_all
-        if check(self.game):
-            self.game = self.get_game()
-        if check(self.rating):
-            self.rating = self.get_rating()
-        if check(self.rank):
-            self.rank = self.get_rank()
-        if check(self.region_rank):
-            self.region_rank = self.get_region_rank()
-        if check(self.name):
-            self.name = self.get_name()
-        if check(self.country):
-            self.country = self.get_country()
-        if check(self.social):
-            self.social = self.get_social()
-        if check(self.icon):
-            self.icon = self.get_icon()
-        if check(self.players):
-            self.players = self.get_players()
-        if check(self.manager):
-            self.manager = self.get_manager()
 
     def connect(self):
         """Connects to the url to retrieve the html tree if it's not there"""
@@ -89,6 +51,15 @@ class Team(Storage):
             return re.findall('teams/(\d+)', self.url)[0]
         except IndexError:
             return ''
+
+    def get_match_history_url(self):
+        return urljoin(self.url, 'matches')
+
+    def get_player_history_url(self):
+        return urljoin(self.url, 'player-history')
+
+    def get_rank_change(self):
+        return ''
 
     def get_country(self):
         self.connect()
@@ -155,12 +126,16 @@ class Team(Storage):
             url = player.xpath("@href")
             url = urljoin(self.url, url[0]) if url else ''
             found_players.append(Player(url=url, nickname=nickname, fullname=fullname, photo_url=photo,
-                                       famous_heroes=famous_heroes))
+                                        famous_heroes=famous_heroes))
         return found_players
 
-    def get_vods(self):
-        self.connect()
-        #TODO vods
+    def get_upcoming_matches(self):
+        match_links = self.tree.xpath("//table[@id='gb-matches']//a/@href")
+        matches = []
+        for link in match_links:
+            link = urljoin(self.url, link)
+            matches.append(Match(url=link, fill=True))
+        return matches
 
     def __dict__(self, fill_details=False, override=False):
         """
@@ -182,15 +157,17 @@ class Team(Storage):
             'icon': self.icon,
             'game': self.game,
             'rank': self.rank,
+            'rank_change': self.rank_change,
             'region rank': self.region_rank,
             'country': self.country,
-            'manager': self.manager.dictionary,
+            'manager': self.manager.dictionary if self.manager else {},
             'rank change': self.rank_change,
             'region_rank': self.region_rank,
             'world_rank': self.rank,
             'rating': self.rating,
             'social': self.social,
-            'team members': [p.dictionary for p in self.players]
+            'players': [p.dictionary for p in self.players],
+            'upcoming_matches': [m.dictionary for m in self.upcoming_matches]
         }
         return data
 
@@ -199,19 +176,6 @@ class Team(Storage):
 
 
 if __name__ == '__main__':
-    team = Team(url='http://www.gosugamers.net/dota2/teams/8954-team-secret')
-    # print(team.url)
+    team = Team(url='http://www.gosugamers.net/dota2/teams/4387-vici-gaming')
     team.fill_details()
     print(team)
-    # print(team.manager)
-    # print(team.manager)
-    # for member in team.players:
-    #     print(member)
-    #     print('----------')
-    #
-    # json_data = team.__dict__()
-    # json_data = json.dumps(json_data)
-    # print(json_data)
-
-    # print(team)
-    # print(team.url)
