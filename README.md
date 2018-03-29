@@ -1,3 +1,5 @@
+DEPRECATED: see https://github.com/Granitosaurus/ggmt instead
+
 GosuGamers-API
 ==============
 
